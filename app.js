@@ -196,6 +196,7 @@
 
   function enterPick() {
     const wrap = $('#gridPick');
+    wrap.classList.remove('scanning', 'revealed');
     buildGrid(wrap);
     $('#toVenue').disabled = true;
     if (scanned || reduced) {
@@ -209,7 +210,9 @@
     later(() => {
       scanned = true;
       wrap.classList.remove('scanning');
+      wrap.classList.add('revealed');
       fill($('#scanStatus'), T.scanDone);
+      later(() => wrap.classList.remove('revealed'), 1600);
     }, T.scan.length * 900);
     showPicked();
   }

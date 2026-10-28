@@ -406,3 +406,39 @@ body.show-en .envelope, body.show-zh .envelope { height: 270px; }
 .gridwrap.scanning .hx::after { content: "✕"; font-size: .7rem; color: var(--muted); }
 @keyframes flick { 0% { background: #D9D2C3; } 35% { background: #FFC629; } 50% { background: #D9D2C3; } 75% { background: #FFE08A; } 88% { background: #D9D2C3; } }
 @media (prefers-reduced-motion: reduce) { .gridwrap.scanning .hx { animation: none; } }
+
+/* ===== javítás: a villogás felülírta a "pick" ragyogást (specificitás), és kell átmenet a feloldáskor ===== */
+.gridwrap.pick.scanning .cell:not(.busy):not(.sel) .hx,
+.gridwrap.scanning .hx {
+  background: #D9D2C3;
+  animation: cellIn .4s var(--ease) calc(var(--c) * 50ms + var(--r) * 15ms) both,
+             flick var(--fdur, .8s) steps(1, end) var(--fd, 0s) infinite;
+}
+@keyframes flick {
+  0%   { background: #D9D2C3; transform: scale(1); }
+  18%  { background: #FFC629; transform: scale(1.12); }
+  34%  { background: #D9D2C3; transform: scale(1); }
+  52%  { background: #FFE08A; transform: scale(1.06); }
+  68%  { background: #D9D2C3; transform: scale(1); }
+  84%  { background: #FFC629; transform: scale(1.12); }
+  100% { background: #D9D2C3; transform: scale(1); }
+}
+/* feloldás: a szürke hatszögek hullámban sárgára váltanak */
+.gridwrap.pick.revealed .cell:not(.busy):not(.sel) .hx {
+  animation: reveal .7s var(--ease) calc(var(--c) * 70ms + var(--r) * 45ms) both;
+}
+@keyframes reveal {
+  0%   { background: #D9D2C3; transform: scale(.75); }
+  55%  { background: #FFC629; transform: scale(1.25); }
+  100% { background: #FFC629; transform: scale(1); }
+}
+.gridwrap.revealed .hx::after { content: none; }
+@media (prefers-reduced-motion: reduce) {
+  .gridwrap.pick.scanning .cell:not(.busy):not(.sel) .hx, .gridwrap.scanning .hx, .gridwrap.pick.revealed .cell:not(.busy):not(.sel) .hx { animation: none; }
+}
+
+/* zászlók: mindig színesek; a bekapcsolt állapotot a sárga háttér + árnyék jelzi */
+.lang { filter: none; opacity: 1; background: #fff; box-shadow: 0 2px 0 rgba(29, 26, 20, .25); }
+.lang:hover { transform: translateY(-2px) rotate(-8deg); }
+.lang[aria-pressed="true"] { background: var(--honey); box-shadow: 0 3px 0 var(--ink); transform: translateY(-1px); }
+@keyframes nudgeFlag { 0%, 100% { transform: none; } 50% { transform: translateY(-3px) rotate(-10deg); } }
