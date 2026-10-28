@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FFC629">
+  <meta name="description" content="Betti – segítek időpontot találni egy pohár borra, ütközés nélkül.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Betti – randi időpont</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%9D%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg" id="bg" aria-hidden="true"></div>
+
+  <main class="card" id="app">
+    <header class="top">
+      <button class="back" id="back" type="button" aria-label="Vissza / Back / 返回" hidden>←</button>
+      <div class="brand">betti<span>.</span></div>
+      <ol class="progress" id="progress" aria-hidden="true"></ol>
+    </header>
+
+    <!-- 0 · Szia -->
+    <section class="screen" data-step="0">
+      <svg class="bee" viewBox="0 0 120 100" role="img" aria-label="Mosolygó méhecske">
+        <defs><clipPath id="bodyClip"><ellipse cx="60" cy="60" rx="36" ry="27"/></clipPath></defs>
+        <g class="wings">
+          <ellipse cx="48" cy="30" rx="15" ry="22" transform="rotate(-18 48 30)"/>
+          <ellipse cx="72" cy="30" rx="15" ry="22" transform="rotate(18 72 30)"/>
+        </g>
+        <path class="stinger" d="M24 60 L10 56 L10 64 Z"/>
+        <ellipse class="body" cx="60" cy="60" rx="36" ry="27"/>
+        <g clip-path="url(#bodyClip)"><rect class="stripe" x="38" y="30" width="9" height="60"/><rect class="stripe" x="56" y="30" width="9" height="60"/></g>
+        <ellipse class="outline" cx="60" cy="60" rx="36" ry="27"/>
+        <circle class="eye" cx="82" cy="54" r="3.6"/>
+        <path class="smile" d="M79 64 q5 5 10 0"/>
+        <circle class="blush" cx="76" cy="62" r="3"/>
+      </svg>
+      <div class="head">
+        <h1 tabindex="-1">Szia Betti!</h1>
+        <div class="trs">
+          <span class="tr en">Hi Betti! Bee-lieve it or not, I'm here to help.</span>
+          <span class="tr zh">嗨，Betti！我是你的小蜜蜂 🐝（wǒ shì nǐ de xiǎo mìfēng）</span>
+        </div>
+      </div>
+      <div class="block">
+        <p class="lead">Segítek eldönteni, mikor érünk rá egy pohár borra, <strong>úgy, hogy ne ütközzön a naptáradban semmivel.</strong></p>
+        <div class="trs">
+          <span class="tr en">I'll help us pick a time for a glass of wine, with zero clashes in your calendar.</span>
+          <span class="tr zh">我来帮我们挑个喝红酒的时间，你的日历绝不撞车。</span>
+        </div>
+      </div>
+      <div class="block">
+        <p class="small">Fogalmam sincs, mennyire vagy tele, ezért te mutatod meg. Semmi nem hagyja el a böngésződet, titkot tartok. 🤐</p>
+        <div class="trs">
+          <span class="tr en">No clue how busy you are, so you show me. Nothing leaves your browser. Lips sealed.</span>
+          <span class="tr zh">我不知道你有多忙，所以你来告诉我。一切只留在你的浏览器里，我守口如瓶。</span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-next><span>Kezdjük 🐝</span><span class="b-tr">Let's bee-gin · 开始吧</span></button>
+    </section>
+
+    <!-- 1 · A terv -->
+    <section class="screen" data-step="1" hidden>
+      <div class="head">
+        <h1 tabindex="-1">A terv</h1>
+        <div class="trs">
+          <span class="tr en">The plan (no, not a world-domination one)</span>
+          <span class="tr zh">计划（不是征服世界的那种）</span>
+        </div>
+      </div>
+      <ul class="plan">
+        <li><span class="ic">🍷</span><div><b>Egy pohár bor</b><small>Vagy kettő. A hangulat dönt.</small>
+          <span class="tr en">One glass of wine. Or two. Vibes decide.</span><span class="tr zh">一杯红酒，或者两杯，看心情。</span></div></li>
+        <li><span class="ic">✈️</span><div><b>Mesélsz a kínai utadról</b><small>Mindent akarok tudni. A pálcikás részt is.</small>
+          <span class="tr en">You tell me about China. Chopstick chapter is mandatory.</span><span class="tr zh">给我讲讲中国之旅，筷子那一章必讲。</span></div></li>
+        <li><span class="ic">😂</span><div><b>Sokat nevetünk</b><small>Ez mindkettőnk érdeke, rajta leszek.</small>
+          <span class="tr en">Lots of laughing. In both our interests, I'm on it.</span><span class="tr zh">多多欢笑，对我们俩都好，包在我身上。</span></div></li>
+        <li><span class="ic">🐶</span><div><b>A kutyusod is jön</b><small>Kutyabarát helyet keresek neki.</small>
+          <span class="tr en">Your pup comes too. Dog-friendly spot, woof-approved.</span><span class="tr zh">你的小狗也来，我选欢迎狗狗的地方。汪！</span></div></li>
+      </ul>
+      <div class="split" aria-label="Munkamegosztás / Who does what / 分工">
+        <div class="pill you"><small>Te · You · 你</small><b>Időpont</b><span class="p-tr">Time · 时间</span></div>
+        <div class="hexjoin" aria-hidden="true">⇄</div>
+        <div class="pill me"><small>Én · Me · 我</small><b>Helyszín</b><span class="p-tr">Venue · 地点</span></div>
+      </div>
+      <button class="btn" type="button" data-next><span>Jöhet a naptár</span><span class="b-tr">Bring on the calendar · 来看日历</span></button>
+    </section>
+
+    <!-- 2 · Naptár-ellenőrzés -->
+    <section class="screen" data-step="2" hidden>
+      <div class="head">
+        <h1 tabindex="-1">Nézzük a naptárad</h1>
+        <div class="trs">
+          <span class="tr en">Let's peek at your calendar</span>
+          <span class="tr zh">来看看你的日历</span>
+        </div>
+      </div>
+      <div class="status" id="scanStatus" aria-live="polite"></div>
+      <div class="gridwrap" id="gridMark"></div>
+      <div class="legend" aria-hidden="true"><span><i class="k free"></i>szabad · free · 空闲</span><span><i class="k busy"></i>foglalt · busy · 忙</span></div>
+      <div class="count" id="freeCount"></div>
+      <div class="block" id="markHint" hidden>
+        <p class="small">A foglaltakat én tippeltem. Ha tévedtem, koppints a cellára, és átbillen.</p>
+        <div class="trs">
+          <span class="tr en">I guessed the busy ones. Wrong? Tap a cell to flip it.</span>
+          <span class="tr zh">忙碌的时段是我猜的。猜错了就点一下切换。</span>
+        </div>
+      </div>
+      <button class="btn" type="button" id="toPick" data-next disabled><span>Mutasd a szabad időpontokat</span><span class="b-tr">Show me the free slots · 显示空闲时间</span></button>
+    </section>
+
+    <!-- 3 · Időpont választás -->
+    <section class="screen" data-step="3" hidden>
+      <div class="head">
+        <h1 tabindex="-1">Válaszd ki a tiéd</h1>
+        <div class="trs">
+          <span class="tr en">Pick yours</span>
+          <span class="tr zh">选一个你的</span>
+        </div>
+      </div>
+      <div class="block">
+        <p class="lead sm">Csak a szabad hatszögek világítanak. Egy koppintás, és az időpont a tiéd.</p>
+        <div class="trs">
+          <span class="tr en">Only free hexagons glow. One tap and the time is yours.</span>
+          <span class="tr zh">只有空闲的六边形会发光，点一下就是你的了。</span>
+        </div>
+      </div>
+      <div class="gridwrap pick" id="gridPick"></div>
+      <div class="picked" id="picked" aria-live="polite">
+        <span class="pk-when" id="pkWhen"></span>
+        <span class="pk-check" id="pkCheck"></span>
+      </div>
+      <button class="btn" type="button" id="toVenue" data-next disabled><span>Ez lesz az!</span><span class="b-tr">This is the one! · 就这个！</span></button>
+    </section>
+
+    <!-- 4 · Helyszín -->
+    <section class="screen" data-step="4" hidden>
+      <div class="head">
+        <h1 tabindex="-1">A helyszín az én dolgom</h1>
+        <div class="trs">
+          <span class="tr en">The venue is my job</span>
+          <span class="tr zh">地点交给我</span>
+        </div>
+      </div>
+      <div class="block">
+        <p class="lead sm">Te hoztad az időpontot, én hozom a helyet. Nyisd ki a borítékot.</p>
+        <div class="trs">
+          <span class="tr en">You bring the time, I bring the place. Open the envelope.</span>
+          <span class="tr zh">你出时间，我出地点。打开信封吧。</span>
+        </div>
+      </div>
+      <button class="envelope" id="envelope" type="button" aria-expanded="false">
+        <span class="env-flap"></span>
+        <span class="env-seal">🐝</span>
+        <span class="env-paper">
+          <small>Helyszín · Venue · 地点</small>
+          <b id="venueName">Meglepetés 🤫</b>
+          <span class="tr en" id="venueTr">Surprise · 惊喜</span>
+          <em>Kutyabarát, jó borral, csendes sarokkal a nevetéshez.</em>
+          <span class="tr en">Dog-friendly, great wine, a cozy corner for laughing.</span>
+          <span class="tr zh">欢迎狗狗，有好酒，还有适合大笑的角落。</span>
+        </span>
+        <span class="env-hint">Koppints a pecsétre · Tap the seal · 点击印章</span>
+      </button>
+      <ul class="checks" id="venueChecks" hidden>
+        <li><b>🐾 Víz a kutyusodnak</b><span>Water for the pup · 狗狗有水喝</span></li>
+        <li><b>🍷 Rendes borlap</b><span>A proper wine list · 像样的酒单</span></li>
+        <li><b>🪑 Kényelmes sarok</b><span>Cozy corner · 舒服的角落</span></li>
+      </ul>
+      <button class="btn" type="button" id="toTicket" data-next disabled><span>Visszaigazolom</span><span class="b-tr">I confirm · 我确认</span></button>
+    </section>
+
+    <!-- 5 · Jegy -->
+    <section class="screen" data-step="5" hidden>
+      <h1 tabindex="-1" class="sr-only">Visszaigazolás / Confirmation / 确认</h1>
+      <article class="ticket" id="ticket" aria-label="Randi visszaigazolás">
+        <div class="t-head">
+          <span class="t-kicker">Betti × randi · date · 约会</span>
+          <b class="t-date" id="tDate"></b>
+          <span class="t-datetr" id="tDateTr"></span>
+          <span class="t-time" id="tTime"></span>
+          <div class="t-stamp" aria-label="Ütközésmentes / No clash / 无冲突">Ütközés&shy;mentes ✔<small>No clash · 无冲突</small></div>
+        </div>
+        <ul class="t-rows">
+          <li><span>📍</span><div><small>Helyszín · Venue · 地点</small><b id="tVenue"></b><i class="tr" id="tVenueTr"></i></div></li>
+          <li><span>🍷</span><div><small>Program · Plan · 节目</small><b>Egy pohár bor</b><i class="tr">One glass of wine · 一杯红酒</i></div></li>
+          <li><span>✈️</span><div><small>Téma · Topic · 话题</small><b>Kínai kaland, élő közvetítés</b><i class="tr">China adventures, live broadcast · 中国历险记，现场直播</i></div></li>
+          <li><span>😂</span><div><small>Nevetési kvóta · Laugh quota · 笑的指标</small><b>Túl lesz teljesítve</b><i class="tr">Will be exceeded · 必定超额完成</i></div></li>
+          <li><span>🐶</span><div><small>Vendég · Guest · 嘉宾</small><b>A kutyusod, VIP státuszban</b><i class="tr">Your pup, VIP status · 你的狗狗，贵宾待遇</i></div></li>
+        </ul>
+        <div class="t-foot fade" id="jokeLine"></div>
+      </article>
+      <div class="block shot">
+        <p>📸 Készíts róla screenshotot, és küldd el nekem. Ez a hivatalos visszaigazolás.</p>
+        <div class="trs">
+          <span class="tr en">Take a screenshot and send it to me. It's the official confirmation.</span>
+          <span class="tr zh">截个图发给我，这就是正式确认函。</span>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn" type="button" id="btnIcs"><span>📅 Naptárba teszem</span><span class="b-tr">Add to calendar · 加入日历</span></button>
+        <button class="btn ghost" type="button" id="btnShare"><span>💬 Üzenet másolása</span><span class="b-tr">Copy message · 复制消息</span></button>
+      </div>
+      <button class="link" type="button" id="btnAgain">Mégis másik időpont · Another time · 换个时间</button>
+    </section>
+  </main>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
